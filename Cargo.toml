@@ -1,0 +1,9 @@
+[package]
+name = "rust-gpu-cli-builder"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.44"
+structopt = "0.3.25"
+spirv-builder = { git = "https://github.com/EmbarkStudios/rust-gpu" }
