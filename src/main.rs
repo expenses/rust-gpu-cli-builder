@@ -9,6 +9,8 @@ struct Opt {
     /// Split up the resulting SPIR-V module into one file per entry point.
     #[structopt(long)]
     multimodule: bool,
+    #[structopt(long)]
+    debug: bool,
     #[structopt(default_value = "spirv-unknown-spv1.0")]
     target: String,
     /// A list of capabilities to enable, such as `Int8`.
@@ -45,7 +47,8 @@ fn main() -> anyhow::Result<()> {
 
     let mut builder = SpirvBuilder::new(&opt.path, &opt.target)
         .print_metadata(MetadataPrintout::None)
-        .multimodule(opt.multimodule);
+        .multimodule(opt.multimodule)
+        .release(!opt.debug);
 
     for extension in &opt.extensions {
         builder = builder.extension(extension);
