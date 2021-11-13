@@ -11,7 +11,7 @@ struct Opt {
     multimodule: bool,
     #[structopt(long)]
     debug: bool,
-    #[structopt(default_value = "spirv-unknown-spv1.0")]
+    #[structopt(long, default_value = "spirv-unknown-spv1.0")]
     target: String,
     /// A list of capabilities to enable, such as `Int8`.
     #[structopt(long, parse(try_from_str = parse_capability))]
