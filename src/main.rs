@@ -75,6 +75,8 @@ fn main() -> anyhow::Result<()> {
 
     let result = builder.build()?;
 
+    std::fs::create_dir_all(&output)?;
+
     if opt.multimodule {
         for (name, path) in result.module.unwrap_multi() {
             let mut output = output.join(name);
