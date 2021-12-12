@@ -79,6 +79,7 @@ fn main() -> anyhow::Result<()> {
 
     if opt.multimodule {
         for (name, path) in result.module.unwrap_multi() {
+            let name = name.replace("::", "_");
             let mut output = output.join(name);
             output.set_extension("spv");
             std::fs::copy(path, &output)?;
