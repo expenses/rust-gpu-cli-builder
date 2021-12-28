@@ -6,4 +6,4 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.44"
 structopt = "0.3.25"
-spirv-builder = { git = "https://github.com/EmbarkStudios/rust-gpu" }
+spirv-builder = { git = "https://github.com/expenses/rust-gpu", branch = "preserve-bindings" }
