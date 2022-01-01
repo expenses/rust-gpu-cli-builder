@@ -63,7 +63,8 @@ fn main() -> anyhow::Result<()> {
         .print_metadata(MetadataPrintout::None)
         .multimodule(opt.multimodule)
         .release(!opt.debug)
-        .spirv_metadata(opt.spirv_metadata);
+        .spirv_metadata(opt.spirv_metadata)
+        .preserve_bindings(opt.spirv_metadata != SpirvMetadata::None);
 
     for extension in &opt.extensions {
         builder = builder.extension(extension);
