@@ -111,6 +111,7 @@ exceptions = [
     # Each entry is the crate and version constraint, and its specific allow
     # list
     { allow = ["BSD-2-Clause"], name = "raw-string", version = "*" },
+    { allow = ["Unicode-DFS-2016"], name = "unicode-ident", version = "1.0.6"}
 ]
 
 # Some crates don't have (easily) machine readable licensing information,
