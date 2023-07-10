@@ -6,7 +6,7 @@ license = "MIT"
 
 [dependencies]
 anyhow = "1.0.71"
-structopt = "0.3.26"
+clap = { version = "4.3.11", features = ["derive"] }
 spirv-builder = "0.8.0"
 
 [workspace]

@@ -1,28 +1,28 @@
 use spirv_builder::{Capability, MetadataPrintout, SpirvBuilder, SpirvMetadata};
 use std::path::PathBuf;
 use std::str::FromStr;
-use structopt::StructOpt;
+use clap::Parser;
 
-#[derive(StructOpt)]
+#[derive(clap::Parser)]
 struct Opt {
     path: PathBuf,
     /// Split up the resulting SPIR-V module into one file per entry point.
-    #[structopt(long)]
+    #[arg(long)]
     multimodule: bool,
-    #[structopt(long)]
+    #[arg(long)]
     debug: bool,
-    #[structopt(long, default_value = "spirv-unknown-spv1.0")]
+    #[arg(long, default_value = "spirv-unknown-spv1.0")]
     target: String,
     /// A list of capabilities to enable, such as `Int8`.
-    #[structopt(long, parse(try_from_str = parse_capability))]
+    #[arg(long, value_parser = parse_capability)]
     capabilities: Vec<Capability>,
     /// A list of extensions to enable, such as `SPV_KHR_ray_tracing`.
-    #[structopt(long)]
+    #[arg(long)]
     extensions: Vec<String>,
     /// The directory to write the output shaders to. By default they're written to the parent of <path>.
-    #[structopt(long)]
+    #[arg(long)]
     output: Option<PathBuf>,
-    #[structopt(long, default_value = "none", parse(try_from_str = parse_spirv_metadata))]
+    #[arg(long, default_value = "none", value_parser = parse_spirv_metadata)]
     spirv_metadata: SpirvMetadata,
 }
 
@@ -44,7 +44,7 @@ fn parse_capability(string: &str) -> anyhow::Result<Capability> {
 }
 
 fn main() -> anyhow::Result<()> {
-    let opt = Opt::from_args();
+    let opt = Opt::parse();
 
     let output = if let Some(output) = opt.output.as_ref() {
         output
